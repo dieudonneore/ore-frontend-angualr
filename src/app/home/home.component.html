@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div id="searchByCode">
+    <input type="text" id="inputText" class="form-control" aria-describedby="textHelpBlock" placeholder="Search by Code" name="code" [(ngModel)]="code" (ngModelChange)="fiterDataEN()" *ngIf="displayLanguage==='en'">
+    <input type="text" id="inputText" class="form-control" aria-describedby="textHelpBlock" placeholder="Rechercher par Code" name="code" [(ngModel)]="code" (ngModelChange)="fiterDataFR()" *ngIf="displayLanguage==='fr'">
+  </div>
+  <div id="searchByKeyword">
+    <input type="text" id="inputText" class="form-control" aria-describedby="textHelpBlock" placeholder="Search by keyword" [(ngModel)]="keyword" (ngModelChange)="fiterDataEN()" *ngIf="displayLanguage==='en'">
+    <input type="text" id="inputText" class="form-control" aria-describedby="textHelpBlock" placeholder="Rechercher par Mot Clé" name="keyword" [(ngModel)]="keyword" (ngModelChange)="fiterDataFR()" *ngIf="displayLanguage==='fr'">
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic outlined example" id="btnLanguage">
+    <button type="button" class="btn btn-outline-primary" (click)="englich()" [style.background-color]="displayLanguage == 'en' ? 'blueviolet' : 'white'">EN</button>
+    <button type="button" class="btn btn-outline-primary" (click)="french()" [style.background-color]="displayLanguage == 'fr' ? 'blueviolet' : 'white'">FR</button>
+  </div>
+
+
+
+  <br> <br>  <br>  <br>  <br>  <br>  <br>
+
+<div class="contentTable">
+
+  <table id="continent" *ngIf="displayLanguage==='en'">
+
+    <tr>
+      <th *ngFor="let col of headersContinentsTable">
+        {{col}}
+      </th>
+    </tr>
+
+    <tr *ngFor="let continent of continents; let filtercontent of filterContinents">
+
+      <td *ngFor="let col of headersContinentsTable; let fil of headersContinentsTable">
+        {{continent[col]}}{{filterContinents[fil]}}
+      </td>
+
+    </tr>
+
+  </table>
+
+  <br><br><br>
+
+
+  <table id="continent" *ngIf="displayLanguage==='fr'">
+
+    <tr>
+      <th *ngFor="let col of headersContinentsTableFr">
+        {{col}}
+      </th>
+    </tr>
+
+    <tr *ngFor="let translated of translateData">
+
+      <td *ngFor="let trans of headersContinentsTable">
+        {{translated[trans]}}
+      </td>
+
+    </tr>
+
+  </table>
+
+  <div class="nodata" *ngIf="filterContinents.length==0 || translateData.length==0">
+    <p>NO DATA FOUND</p>
+  </div>
+
+</div>
+
+
+</div>

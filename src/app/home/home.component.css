@@ -1,0 +1,79 @@
+.container{
+  width: 90%;
+  height: auto;
+ /*  background-color: whitesmoke; */
+}
+
+.container-fluid{
+  margin-top: 2%;
+}
+
+#searchByCode{
+  width: 35%;
+  height: auto;
+  /* background-color: yellow; */
+}
+
+#searchByKeyword{
+  width: 40%;
+  height: auto;
+  /* background-color: green; */
+}
+
+#btnLanguage{
+  width: 20%;
+  height: auto;
+}
+
+#btnLanguage,#searchByCode,#searchByKeyword{
+  display: inline;
+  float: left;
+  margin-left: 7px;
+}
+
+
+h1
+{
+    text-align: center;
+    color: blueviolet;
+}
+
+
+#continent {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #continent td, #continent th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #continent tr:nth-child(even){background-color: #f2f2f2;}
+
+  #continent tr:hover {background-color: #ddd;}
+
+  #continent th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: blueviolet;
+    color: white;
+  }
+
+  .contentTable{
+    width: 80%;
+    height: auto;
+   /*  background-color: yellow; */
+  }
+
+  .nodata{
+    width: 80%;
+    height: auto;
+   /*  background-color: red; */
+    margin: auto;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+  }

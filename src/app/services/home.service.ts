@@ -35,7 +35,7 @@ export class HomeService {
     return this.http.get<Continent>(this.filter_api+filterdata);
   }
 
-  errorHandl(error: any) {
+  public errorHandl(error: any) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // Get client-side error

@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../services/home.service';
 
-interface Continent {
-  _id: string;
-  Code: string;
-  Name: number;
-  translation: [];
-}
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,39 +8,40 @@ interface Continent {
 })
 export class HomeComponent implements OnInit {
 
-  searchTerm = '';
-  continents: any =[];
-  filterContinents: any =[];
-  translateData: any = [];
-  term = '';
-  headersContinentsTable = ["Code", "Name"];
-  headersContinentsTableFr = ["Code", "Nom"];
+  public continents: any =[];
+  public filterContinents: any =[];
+  public translateData: any = [];
+  public translateDatas: any = [];
+  public headersContinentsTable = ["Code", "Name"];
+  public headersContinentsTableFr = ["Code", "Nom"];
 
-  iscliked: boolean = false;
-  displayLanguage: string="en";
+  public iscliked: boolean = false;
+  public displayLanguage: string="en";
+  public dataFr:any =[];
 
   public code: string='';
   public name: string='';
   public keyword: string='';
-  translated: any;
+  public translated: any;
 
   constructor(private homeservice: HomeService) {}
 
   ngOnInit(): void {
     this.getData();
     this.fiterDataEN();
+    this.fiterDataFR();
   }
 
-  englich(){
+  public englich(){
     this.iscliked = true;
     this.displayLanguage="en"
   }
-  french(){
+  public french(){
     this.iscliked = true;
     this.displayLanguage="fr"
   }
 
-  getData(){
+  public getData(){
     this.homeservice.loadData()
     .subscribe(data => {
       this.continents = data;
@@ -60,14 +54,24 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  fiterDataEN(){
+  public fiterDataEN(){
     this.homeservice.filterData(this.code, this.name, this.keyword)
     .subscribe(data => {
       this.filterContinents=data;
       console.log(this.filterContinents);
     })
   }
-  fiterDataFR(){
-    console.log('data')
+  public fiterDataFR(){
+    this.homeservice.filterData(this.code, this.name, this.keyword)
+    .subscribe(data => {
+      this.translateData=data;
+      this.translateData.forEach((e: any) => {
+        this.translated= e.translation['0'];
+        this.translateDatas.push(this.translated);
+      });
+      this.dataFr = this.translateDatas.splice(0, 8);
+      console.log(this.dataFr);
+
+    })
   }
 }
